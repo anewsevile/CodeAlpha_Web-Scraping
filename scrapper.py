@@ -1,13 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import random
 
 headers = {"User-Agent": "Mozilla/5.0"}
 
 data = []
 
-# Scrape multiple pages
+# Scrape 5 pages
 for page in range(1, 6):
     url = f"http://books.toscrape.com/catalogue/page-{page}.html"
     
@@ -26,22 +25,10 @@ for page in range(1, 6):
 # Create DataFrame
 df = pd.DataFrame(data, columns=["Title", "Price", "Rating"])
 
-# ---- UPGRADE STARTS HERE ----
-
-# Rename column
-df.rename(columns={"Title": "Product_Name"}, inplace=True)
-
-# Clean price
+# Clean price (remove £ and convert to float)
 df["Price"] = df["Price"].str.replace("£", "").astype(float)
 
-# Add fake brands
-brands = ["Zara", "H&M", "Nike", "Urbanic", "Forever21"]
-df["Brand"] = [random.choice(brands) for _ in range(len(df))]
-
-# Add category
-df["Category"] = "Clothing"
-
-# Save file
-df.to_csv("products_data.csv", index=False)
+# Save CSV
+df.to_csv("books_data.csv", index=False)
 
 print(df.head())
