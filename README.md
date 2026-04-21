@@ -20,4 +20,4 @@ The project uses libraries like Requests to fetch webpage content, BeautifulSoup
 
 ## Output
 
-A structured dataset (`products_data.csv`) containing product details that can be used for further analysis or visualization.
+A structured dataset (`books_data.csv`) containing product details that can be used for further analysis or visualization.
